@@ -34,6 +34,8 @@
     $consommation;
     $numtranche;
     $somMT = 0;
+    $somHT = 0;
+    $somHTx = 0;
     $montantsFacture = array(); // tableau où on va stocker les montants facturés
     $montantsHT = array(); // tableau où on va stocker les montants HT
 
@@ -99,8 +101,8 @@
     <title> Calcul facture</title>
 </head>
 <body>
-
-<header>
+    <header id="header">
+    <!-- <button id="btnn" onclick="Imprimer()">Imprimer</button> -->
     <nav>
         <img id="img" src="BG_bleu-electricite.jpg" alt="background">
         <img src="Screenshot_2022-02-01_104845-removebg-preview.png" alt="logo" id="logo">
@@ -182,29 +184,69 @@
         </tr>
         <tr>
             <th scope="row">Taxes pour le compte d'Etat (Total TVA + Timbre)</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><?php echo $somMT ?></td>
+
 
         </tr>
+        <tr>
+        <td> TOTAL TVA</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><?php foreach ($montantsFacture as $key => $value) {
+                 $somMT += ($montantsHT[$key] * $tva /100);  } 
+            echo $somMT += ($calibre * ($tva /100));?></td>
+            
+        </tr>
+        <tr>
+            <td>TIMBRE</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><?php echo $timbre ?></td>
+
+        </tr>
+       
         <tr>
             <th scope="row">Sous Total</th>
             <td></td>
             <td></td>
+            <td><?php foreach ($montantsHT as $key => $value) { 
+                $somHT += $montantsHT[$key];
+                
+            }echo $somHT+=$calibre; ?>
+            
+            </td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td><?php $somHTx = $somMT + $timbre; echo $somHTx; ?></td>
         </tr>
         <tr>
             <th scope="row">TOTAL ELECTRICITE</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td colspan=5><?php echo $somHT + $somHTx;?></td>
+            
+
         </tr>
     </table>
+    <footer id="footer">
+        <button id="print" onclick="Imprimer()">Imprimer</button>
+    </footer>
+   
 </body>
+ 
 </html>
+<script  type="text/javascript">
+ function Imprimer(){
+    let footer = document.getElementById('footer');
+    let header = document.getElementById('header');
+    const btn = document.getElementById('btnn');
+    header.style.display = "none";
+    footer.style.display = "none";
+    window.print();
+    header.style.display = "block";
+    footer.style.display = "none";
+    // btnn.style.display = "none";
+
+  
+}
+    </script>
