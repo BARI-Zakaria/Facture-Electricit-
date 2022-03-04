@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="YASSIR"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2022-01-29 05:40:54 PM"/>
+        <attribute name="created" value="WUFTU0lSO1lBU1NFUjsyMDIyLTAxLTI5OzAzOjExOjU0IFBNOzIyMjI="/>
+        <attribute name="edited" value="WUFTU0lSO1lBU1NFUjsyMDIyLTAxLTI5OzA1OjQwOjU0IFBNOzM7MjMzNg=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="input1" type="Real" array="False" size=""/>
+            <input variable="input1"/>
+            <declare name="input2" type="Real" array="False" size=""/>
+            <input variable="input2"/>
+            <declare name="result2" type="Real" array="False" size=""/>
+            <assign variable="result2" expression="input2-input1"/>
+            <declare name="under1" type="Real" array="False" size=""/>
+            <declare name="under2" type="Real" array="False" size=""/>
+            <declare name="result3" type="Real" array="False" size=""/>
+            <declare name="result4" type="Real" array="False" size=""/>
+            <declare name="result5" type="Real" array="False" size=""/>
+            <declare name="result6" type="Real" array="False" size=""/>
+            <if expression="result2&lt;=150">
+                <then>
+                    <comment text="when the value is aqual or smaller then 150"/>
+                    <if expression="result2&lt;=100">
+                        <then>
+                            <assign variable="under1" expression="result2*0.794"/>
+                        </then>
+                        <else>
+                            <assign variable="under2" expression="(result2-100)*0.883+(result2-100)*0.794"/>
+                        </else>
+                    </if>
+                    <output expression="result2" newline="True"/>
+                </then>
+                <else>
+                    <comment text="when the value bigger than 150"/>
+                    <if expression="result2&gt;=151 &amp;&amp; result2&lt;=210">
+                        <then>
+                            <assign variable="result3" expression="result2*0.9451"/>
+                            <output expression="result3" newline="True"/>
+                        </then>
+                        <else>
+                            <if expression="result2 &gt;= 211 &amp;&amp; result2 &lt;= 310">
+                                <then>
+                                    <assign variable="result4" expression="result2*1.0489"/>
+                                    <output expression="result4" newline="True"/>
+                                </then>
+                                <else>
+                                    <if expression="result2 &gt;= 311 &amp;&amp; result2&lt;=510">
+                                        <then>
+                                            <assign variable="result5" expression="result2*1.2951"/>
+                                            <output expression="result5" newline="True"/>
+                                        </then>
+                                        <else>
+                                            <if expression="result2&gt;=500">
+                                                <then>
+                                                    <assign variable="result6" expression="result2*1.4975"/>
+                                                    <output expression="result6" newline="True"/>
+                                                </then>
+                                                <else/>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
